@@ -1,0 +1,100 @@
+<head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<menu-bar></menu-bar>
+
+<main>
+<body>
+
+<ul id="slide-out" class="side-nav">
+    <li><div class="userView">
+      <div class="background">
+        <img src="view/profile/img/background.jpg">
+      </div>
+      <a href="#!user"><img class="circle" src="view/profile/img/profile.png"></a>
+      <a href="#!name"><span class="white-text name">Welcome {{vm.firstName}} {{vm.lastName}}</span></a>
+      <a href="#!email"><span class="white-text email">{{vm.Email}}</span></a>
+    </div></li>
+    <li></li>
+ 
+    <li><div class="divider"></div></li>
+    <li class="subheader"><span style="padding-left: 10px">Instructions</span></li>
+
+    <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>To Upload Files</div>
+      <div class="collapsible-body"><span style="padding-left: 15px">Drop files or click on the box</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>To Download Files</div>
+      <div class="collapsible-body"><span style="padding-left: 15px">Click "DOWNLOAD" button</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>To Delete Files</div>
+      <div class="collapsible-body"><span style="padding-left: 15px">Click "DELETE" button</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>To Preview Files</div>
+      <div class="collapsible-body"><span style="padding-left: 15px">Click file names</span></div>
+    </li>
+
+
+    </ul>
+
+  </ul>
+
+  
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">question_answer</i></a>
+
+
+
+<div class="container">
+	<div class="row">
+		<h1 class="header black-text">{{vm.firstName}} {{vm.lastName}}</h1>
+		<div class="divider"></div>
+	</div>
+
+	<file-viewer></file-viewer>
+
+<ul class = "hor">
+<li class = "hor_li">
+<h2><span style="padding-left: 30px">My Files:</span></h2>
+<li class = "hor_li">
+<img src="view/profile/img/pokeball.png" style="width: 30px; height: auto; padding-top: 15px; margin-left: 870px">
+</li>
+</li>
+</ul>
+
+
+
+	<ul class = "ul">
+		<li class = "li" ng-repeat="x in model.lastUpdated">
+			<div class="container">
+				<div class="row">
+
+					<a id = "change" ng-href="{{x.path}}"><h6 class="col s3">windows.change({{x.name}})</h6> 
+					</a>  
+
+					<a class="red btn col s3" ng-href="{{x.path}}" download>Download</a>
+					<div class="col s1"></div>
+					<btn class="grey btn col s3" ng-click="vm.deleteFile(x._id)">Delete</btn>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+</body>
+</main>
+
+
+<footer class="page-footer red">
+
+    <div class="footer-copyright">
+        <div class="container">
+        © 2017 PokeHub
+        </div>
+    </div>
+
+</footer>

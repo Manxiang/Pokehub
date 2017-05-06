@@ -1,0 +1,20 @@
+<head>
+	<link href="view/core/fileViewer/fileViewer.style.css" type="text/css" rel="stylesheet" />
+	<link href="view/core/fileViewer/animate.css" type="text/css" rel="stylesheet" />
+</head>
+<div class="container" ngf-drop ngf-select ng-model="files"	ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+						accept="image/*,application/pdf" ngf-pattern="image/*,application/pdf">
+	<div class="droparea">
+
+       <h1 class = "intro animated rubberBand"> To Upload: Drop Files Or Click Here </h1>
+       <img src="view/core/fileViewer/img/pikachu.png" class = "size animated bounce" style = "width: 190px; height: auto">
+		<div class="drop">				
+<!-- 			<ul>
+				<li ng-repeat="x in files">
+					<p>{{x.name}}</p>
+					<p>{{x.type}}</p>
+				</li>
+			</ul> -->
+		</div>
+	</div>
+</div>
