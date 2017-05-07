@@ -1,11 +1,8 @@
-<head>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-
-<menu-bar></menu-bar>
+<header>
+  <menu-bar></menu-bar>
+</header>
 
 <main>
-<body>
 
 <ul id="slide-out" class="side-nav">
     <li><div class="userView">
@@ -14,8 +11,6 @@
       </div>
       <a href="#!user"><img class="circle" src="view/profile/img/profile.png"></a>
       <a href="#!name"><span class="white-text name">Welcome {{vm.firstName}} {{vm.lastName}}</span></a>
-      <a href="#!email"><span class="white-text email">{{vm.Email}}</span></a>
-    </div></li>
     <li></li>
  
     <li><div class="divider"></div></li>
@@ -49,52 +44,74 @@
 
 
 
-<div class="container">
-	<div class="row">
-		<h1 class="header black-text">{{vm.firstName}} {{vm.lastName}}</h1>
-		<div class="divider"></div>
-	</div>
 
-	<file-viewer></file-viewer>
+  <div class="container">
+    <file-viewer></file-viewer>
 
-<ul class = "hor">
-<li class = "hor_li">
-<h2><span style="padding-left: 30px">My Files:</span></h2>
-<li class = "hor_li">
-<img src="view/profile/img/pokeball.png" style="width: 30px; height: auto; padding-top: 15px; margin-left: 870px">
-</li>
-</li>
-</ul>
-
-
-
-	<ul class = "ul">
-		<li class = "li" ng-repeat="x in model.lastUpdated">
-			<div class="container">
-				<div class="row">
-
-					<a id = "change" ng-href="{{x.path}}"><h6 class="col s3">windows.change({{x.name}})</h6> 
-					</a>  
-
-					<a class="red btn col s3" ng-href="{{x.path}}" download>Download</a>
-					<div class="col s1"></div>
-					<btn class="grey btn col s3" ng-click="vm.deleteFile(x._id)">Delete</btn>
-				</div>
-			</div>
-		</li>
-	</ul>
-</div>
-
-</body>
-</main>
-
-
-<footer class="page-footer red">
-
-    <div class="footer-copyright">
-        <div class="container">
-        © 2017 PokeHub
-        </div>
+    <div class="container">
+      <div class="row">
+        <form class="col s12" ng-submit="vm.onSubmit()">
+          <div class="row valign-wrapper">
+            <i class="small material-icons col s1">create_new_folder</i>
+            <div class="input-field col s6">
+              <input id="folder_name" ng-model="vm.params.folderName" type="text">
+              <label for="folder_name">Folder Name</label>
+            </div>
+            <button ng-disabled="!vm.params.folderName" class="red btn col s2 waves-effect" type="submit">Create</button>
+            <div class="col s1"></div>
+            <btn class="grey btn col s2 waves-effect" ng-click="vm.changeFolderToRoot(rootFolder)">Home</btn>
+          </div>
+        </form>
+      </div>
     </div>
 
+    <div class="container">
+      <nav>
+        <div class="nav-wrapper grey darken-3">
+          <div class="row">
+            <div class="col s12 center-align">
+              <a ng-click="vm.changeFolder(x._id,x.name,x.index)" ng-repeat="x in vm.breadCrumbs.lastUpdated" class="breadcrumb red-text">{{x.name}}</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+      <ul>
+        <li ng-repeat="x in folders.lastUpdated">
+          <div class="container">
+            <div class="row">
+              <i class="small material-icons col s1">folder</i>
+              <h6 class="col s4">{{x.name}}</h6>
+              <btn class="red btn col s3 waves-effect" ng-click="vm.changeFolder(x._id, x.name)">Move To</btn>
+              <div class="col s1"></div>
+              <btn class="grey btn col s3 waves-effect" ng-click="vm.deleteFolder(x._id)">Delete</btn>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <ul>
+        <li ng-repeat="x in files.lastUpdated">
+          <div class="container">
+            <div class="row">
+              <i class="small material-icons col s1">insert_drive_file</i>
+              <h6 class="col s4">{{x.name}}</h6>
+              <a class="red btn col s3 waves-effect" ng-href="{{x.path}}" download="{{x.name}}">Download</a>
+              <div class="col s1"></div>
+              <btn class="grey btn col s3 waves-effect" ng-click="vm.deleteFile(x._id)">Delete</btn>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<footer class="page-footer red">
+  <appfooter></appfooter>
 </footer>
